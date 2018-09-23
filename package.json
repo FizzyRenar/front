@@ -1,0 +1,31 @@
+{
+  "name": "front1",
+  "version": "0.0.1",
+  "description": "Test npm",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FizzyRenar/front.git"
+  },
+  "keywords": [
+    "node",
+    "npm"
+  ],
+  "author": "Anastasiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FizzyRenar/front/issues"
+  },
+  "homepage": "https://github.com/FizzyRenar/front#readme"
+}
