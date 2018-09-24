@@ -1,0 +1,23 @@
+@myVar: violet;
+//функция затемнения
+@darkenVer: darken(@myVar, 20%);
+//операции с переменными
+@newVar: @myVar + #000001;
+//переменная на селектор
+@selector: test;
+//переменная на свойство
+@field: color;
+
+//ссылки
+@anchor: @@field;
+body {
+  background-@{field}: @newVar;
+}
+
+.@{selector} {
+    @{field}: @newVar;
+}
+
+#@{selector}  {
+  background-color: @anchor;
+}

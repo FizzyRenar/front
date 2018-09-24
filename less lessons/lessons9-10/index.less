@@ -1,0 +1,29 @@
+//вложенности
+.test {
+  display: block;
+  & .dv { //  & селектро предыдущей вложенности
+    color: red;
+  }
+  &__dv { //  == .test__dv
+    color: red;
+    &:hover{
+      color: blue;
+    }
+  }
+
+  .test2 & { //  изменение вложенности
+    color: red;
+  }
+}
+
+//операторы
+//любые операторы и скобки можно использовать (), +, -, /, *,
+@baseColor :red;
+.test {
+  width: 100px - 40px;
+  //конвертация величин
+  height: 30em - 10;
+  //работа с цветами
+  color:@baseColor/2; //==maroon
+  color:(@baseColor + 4)/2; //==#820202
+}

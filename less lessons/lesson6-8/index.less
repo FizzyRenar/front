@@ -1,0 +1,109 @@
+////////
+//урок 6
+////////
+
+.bgc() { //если убрать скобки (), класс отобразиться в стилях
+  background-color: red;
+  margin: 10px;
+  font-size: 20px;
+  &:hover{
+    background-color: blue;
+  }
+}
+
+body {
+  .bgc;
+  font-size: 10px;
+}
+
+//вложенности миксинов
+
+.mixin() {
+  .red {
+    color:red;
+  }
+
+  .blue {
+    color:blue;
+  }
+}
+
+.test {
+  .mixin > .blue;
+  font-size: 10px;
+}
+
+//св-во important
+
+.test_2 {
+  .mixin > .blue !important;
+  font-size: 10px;
+}
+
+////////
+//урок 7
+////////
+
+.mix(@radius,@padding:5px) { //параметры : по умолчанию и нет
+  border-radius:@radius;
+  padding: @padding;
+}
+
+.mix(@radius) { //дубли миксинов с разным кол-вом переменных (сколкко пер передаш,такой миксин и вызовться
+  border-radius:@radius;
+}
+
+.mix(@radius) { //одинаковые миксины (наложаться друг на друга)
+  width:@radius;
+}
+
+.test {
+  .mix(15px);
+}
+
+.test_2 {
+  .mix(@padding: 10px,@radius:5px); // изменнение порядка параметров
+}
+
+.mix_2(@width:1px,@type:solid,@color:black) {
+  border:@arguments; //@width @type @color = все попорядку
+}
+
+.test {
+  .mix_2(@color:blue);
+}
+
+////////
+//урок 8
+////////
+.mix8() { //миксин-функция
+  @width:10px;
+}
+
+.test8 {
+  .mix8;
+  width: @width;
+}
+
+.mix8_2(@a,@b) { //миксин-функция c переменными
+  @average:((@a + @b)/2);
+}
+
+.test8_2 {
+  .mix8_2(30px,20px);
+  width: @average;
+}
+
+.mix8_3(@padding,@width:100px) { //вложенные миксины
+  .padWidth(@color:black){
+    padding: @padding;
+    width: @width;
+    color: @color;
+  }
+}
+
+.test8_3 {
+  .mix8_3(30px); //можно менять любые миксины
+  .padWidth(green);
+ // width: @average;
+}

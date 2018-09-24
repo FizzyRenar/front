@@ -1,0 +1,70 @@
+//наследование
+.btn {
+  display: inline;
+  color: red;
+  background-color: #00a8e6;
+  & .btn-gr {
+    color: green;
+  }
+}
+
+.button__date {
+  &:extend(.btn);
+ border-radius: 10px;
+}
+
+//влож наследование
+.button__date {
+  &:extend(.btn .btn-gr);
+  border-radius: 10px;
+}
+
+//наследует предка
+.e .btn {
+  font-weight: 100;
+}
+
+.button__date {
+  &:extend(.btn all);//наследует предка
+  border-radius: 10px;
+  color: beige; //это св-во выведится, а из класса .btn нет
+}
+
+//некомпилируемыe строки
+
+.test {
+  width: ~"calc(100% - 10px)";
+}
+
+//циклы
+
+.loop(@i) when (@i > 0) {
+  width: @i + 10px;
+  .loop(@i - 1);
+}
+.test {
+ // width: 100px;
+  .loop(5);
+}
+//циклы на примере бутстрапа
+.generateBootstrap(@n, @name, @i:1) when (@i =< @n) {
+  .col-@{name}-@{i} {
+    width: ((@i * 100%) / @n);
+  }
+  .generateBootstrap(@n,@name,@i + 1);
+}
+.generateBootstrap(12, md );
+.generateBootstrap(12, sm );
+.generateBootstrap(12, xs );
+.generateBootstrap(12, lg );
+
+
+
+//импорты
+
+@import "../../src/less/new.less"; //или new
+//для сss
+@import (css) "../../src/less/css.css";//флаги: сss, less, multiple, once
+
+//встроенные функциии
+//в документации less
