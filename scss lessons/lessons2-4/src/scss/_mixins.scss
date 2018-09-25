@@ -1,0 +1,76 @@
+///////////////////////
+/////////МИКСИНЫ///////
+/////////ЧАСТЬ 1///////
+///////////////////////
+
+@mixin font {
+  //font-size: 14px;
+  //font-weight: bold;
+  font: {
+    size:14px;
+    weight: bold;
+  }
+}
+
+$link: orange;
+
+@mixin color {
+  color:#fff;
+  background-color: rebeccapurple;
+
+  //вложенность
+  a {
+    color: $link;
+  }
+}
+
+
+///////////////////////
+/////////ЧАСТЬ 2///////
+///////////////////////
+
+@mixin rounded($radius:5px) {
+  border-radius: $radius;
+}
+
+@mixin block ($radius:5px, $border:1px solid black) {
+  @include rounded($radius);
+  border: $border;
+}
+
+@mixin box-shadow($shadows...) {//будут переданы как один стиль (конкотенация)
+  box-shadow: $shadows;
+}
+
+///////////////////////
+/////////ЧАСТЬ 3///////
+///////////////////////
+
+@mixin apply-li {
+  li {
+    font-weight: 400;
+    @content;
+  }
+}
+
+//импорты
+
+@mixin google-font($name) {
+  @import url(https://fonts.googleapis.com/css?family=#{$name});
+}
+
+//медиа запросы
+
+@mixin large-screen() {
+  @media only screen and (max-width: 960px) {
+    @content;
+  }
+}
+
+@mixin tiny-screen() {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+//операторы

@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const less = require('gulp-less');
+const scss = require('gulp-sass');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
@@ -8,7 +8,7 @@ const browserSync = require('browser-sync').create();
 
 var config = {
     paths: {
-        less: './src/less/**/*.less',
+        scss: './src/scss/**/*.scss',
         html: './public/index.html'
     },
     output: {
@@ -17,14 +17,14 @@ var config = {
     }
 };
 
-gulp.task('less', function (){
-    return gulp.src(config.paths.less)
-       // .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(concat(config.output.ccsName))
+gulp.task('scss', function (){
+    return gulp.src(config.paths.scss)
+        .pipe(sourcemaps.init())
+        .pipe(scss())
         .pipe(autoprefixer())
+        .pipe(concat(config.output.ccsName))
         .pipe(cleanCss())
-       // .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.output.path))
         .pipe(browserSync.stream());
 });
@@ -37,8 +37,8 @@ gulp.task('serve',function (){
         }
     });
 
-    gulp.watch(config.paths.less, ['less']);
+    gulp.watch(config.paths.scss, ['scss']);
     gulp.watch(config.paths.html).on('change', browserSync.reload);
 });
 
-gulp.task('default', ['less','serve']);
+gulp.task('default', ['scss','serve']);
